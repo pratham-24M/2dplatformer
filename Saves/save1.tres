@@ -1,0 +1,128 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Core/SaveData.gd" id="1_6ahna"]
+
+[resource]
+script = ExtResource("1_6ahna")
+level_dic = {
+"Level1": {
+"beaten": true,
+"coins": 6,
+"damage_taken": 2,
+"enemies_beaten": 0,
+"max_coins": 7,
+"max_enemies_beaten": 0,
+"max_score": 70,
+"score": 60,
+"unlocked": true,
+"unlocks": "Level2"
+},
+"Level10": {
+"beaten": true,
+"coins": 0,
+"damage_taken": 0,
+"enemies_beaten": 0,
+"max_coins": 0,
+"max_enemies_beaten": 0,
+"max_score": 0,
+"score": 0,
+"unlocked": true,
+"unlocks": "Level11"
+},
+"Level2": {
+"beaten": true,
+"coins": 15,
+"damage_taken": 3,
+"enemies_beaten": 3,
+"max_coins": 16,
+"max_enemies_beaten": 3,
+"max_score": 360,
+"score": 350,
+"unlocked": true,
+"unlocks": "Level3"
+},
+"Level3": {
+"beaten": true,
+"coins": 60,
+"damage_taken": 1,
+"enemies_beaten": 2,
+"max_coins": 5,
+"max_enemies_beaten": 2,
+"max_score": 150,
+"score": 205,
+"unlocked": true,
+"unlocks": "Level4"
+},
+"Level4": {
+"beaten": true,
+"coins": 2,
+"damage_taken": 0,
+"enemies_beaten": 0,
+"max_coins": 3,
+"max_enemies_beaten": 0,
+"max_score": 30,
+"score": 20,
+"unlocked": true,
+"unlocks": "Level5"
+},
+"Level5": {
+"beaten": true,
+"coins": 59,
+"damage_taken": 6,
+"enemies_beaten": 0,
+"max_coins": 4,
+"max_enemies_beaten": 0,
+"max_score": 40,
+"score": 95,
+"unlocked": true,
+"unlocks": "Level6"
+},
+"Level6": {
+"beaten": true,
+"coins": 3,
+"damage_taken": 5,
+"enemies_beaten": 2,
+"max_coins": 8,
+"max_enemies_beaten": 3,
+"max_score": 280,
+"score": 180,
+"unlocked": true,
+"unlocks": "Level7"
+},
+"Level7": {
+"beaten": true,
+"coins": 13,
+"damage_taken": 13,
+"enemies_beaten": 0,
+"max_coins": 13,
+"max_enemies_beaten": 0,
+"max_score": 130,
+"score": 130,
+"unlocked": true,
+"unlocks": "Level8"
+},
+"Level8": {
+"beaten": true,
+"coins": 11,
+"damage_taken": 6,
+"enemies_beaten": 2,
+"max_coins": 19,
+"max_enemies_beaten": 6,
+"max_score": 640,
+"score": 310,
+"unlocked": true,
+"unlocks": "Level9"
+},
+"Level9": {
+"beaten": true,
+"coins": 13,
+"damage_taken": 11,
+"enemies_beaten": 3,
+"max_coins": 3,
+"max_enemies_beaten": 2,
+"max_score": 230,
+"score": 630,
+"unlocked": true,
+"unlocks": "Level10"
+}
+}

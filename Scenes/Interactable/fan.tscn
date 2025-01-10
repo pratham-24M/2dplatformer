@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dulbvraxe3grs"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/fan.gd" id="1_g05g0"]
+[ext_resource type="Texture2D" uid="uid://c1sylt5vh5smx" path="res://Imports/Free/Traps/Fan/On (24x8).png" id="2_h7kgd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2squ"]
+atlas = ExtResource("2_h7kgd")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl8p8"]
+atlas = ExtResource("2_h7kgd")
+region = Rect2(24, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k47y"]
+atlas = ExtResource("2_h7kgd")
+region = Rect2(48, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn4fn"]
+atlas = ExtResource("2_h7kgd")
+region = Rect2(72, 0, 24, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ektgd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2squ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl8p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k47y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn4fn")
+}],
+"loop": true,
+"name": &"you gon fly",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcpp4"]
+size = Vector2(4.55509, 130.227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucxqw"]
+size = Vector2(20.823, 45.0668)
+
+[node name="JumpPad" type="Node2D"]
+script = ExtResource("1_g05g0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ektgd")
+animation = &"you gon fly"
+autoplay = "you gon fly"
+frame_progress = 0.15463
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.499999, -25.5688)
+scale = Vector2(5.48836, 0.451999)
+shape = SubResource("RectangleShape2D_lcpp4")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0.499999, -5.00381)
+scale = Vector2(1.2006, 0.399238)
+shape = SubResource("RectangleShape2D_ucxqw")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

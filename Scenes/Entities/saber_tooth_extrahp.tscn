@@ -1,0 +1,176 @@
+[gd_scene load_steps=23 format=3 uid="uid://cnhvt7018g7n1"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/saber_tooth_extrahp.gd" id="1_6or0b"]
+[ext_resource type="PackedScene" uid="uid://cjx56wqymmobb" path="res://Scenes/UI/healthbar.tscn" id="2_qj8up"]
+[ext_resource type="Texture2D" uid="uid://m4ch3h02ne3s" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 01.png" id="3_7ffx4"]
+[ext_resource type="Texture2D" uid="uid://d0pf6du1lqaji" path="res://Imports/Sprites/EpisodeSeven/09-Dead Hit/Dead Hit 01.png" id="4_8ggfg"]
+[ext_resource type="Texture2D" uid="uid://cfxswtsdpca22" path="res://Imports/Sprites/EpisodeSeven/09-Dead Hit/Dead Hit 02.png" id="5_kjobb"]
+[ext_resource type="Texture2D" uid="uid://bn512rou0vs1s" path="res://Imports/Sprites/EpisodeSeven/09-Dead Hit/Dead Hit 03.png" id="6_ghul3"]
+[ext_resource type="Texture2D" uid="uid://dbap8w7lnub8b" path="res://Imports/Sprites/EpisodeSeven/09-Dead Hit/Dead Hit 04.png" id="7_wy6ii"]
+[ext_resource type="Texture2D" uid="uid://b3ex6yfjn4d1d" path="res://Imports/Sprites/EpisodeSeven/08-Hit/Hit 01.png" id="8_uq4sh"]
+[ext_resource type="Texture2D" uid="uid://bfby3ibuw7e7x" path="res://Imports/Sprites/EpisodeSeven/08-Hit/Hit 02.png" id="9_ijtji"]
+[ext_resource type="Texture2D" uid="uid://b8t13hrl42mds" path="res://Imports/Sprites/EpisodeSeven/08-Hit/Hit 03.png" id="10_kkhh0"]
+[ext_resource type="Texture2D" uid="uid://cfops4ivsynbo" path="res://Imports/Sprites/EpisodeSeven/08-Hit/Hit 04.png" id="11_brfab"]
+[ext_resource type="Texture2D" uid="uid://b1ccorl52vv8t" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 02.png" id="12_l4yoc"]
+[ext_resource type="Texture2D" uid="uid://b7ppj0vhypk8s" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 03.png" id="13_2l7jd"]
+[ext_resource type="Texture2D" uid="uid://bt7507404smhf" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 04.png" id="14_2bqvk"]
+[ext_resource type="Texture2D" uid="uid://bpafqb8cl7a0v" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 05.png" id="15_o1gx1"]
+[ext_resource type="Texture2D" uid="uid://5nj4cy1554l2" path="res://Imports/Sprites/EpisodeSeven/02-Run/Run 06.png" id="16_452ow"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ki2sl"]
+radius = 9.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k3si"]
+size = Vector2(15, 19)
+
+[sub_resource type="Animation" id="Animation_fnixj"]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_8ggfg"), ExtResource("5_kjobb"), ExtResource("6_ghul3"), ExtResource("7_wy6ii")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_laocd"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_uq4sh"), ExtResource("9_ijtji"), ExtResource("10_kkhh0"), ExtResource("11_brfab")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"get_hit"
+}, {
+"args": [],
+"method": &"get_hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jcclx"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_7ffx4"), ExtResource("12_l4yoc"), ExtResource("13_2l7jd"), ExtResource("14_2bqvk"), ExtResource("15_o1gx1"), ExtResource("16_452ow")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6l0yn"]
+_data = {
+"Die": SubResource("Animation_fnixj"),
+"Hit": SubResource("Animation_laocd"),
+"Run": SubResource("Animation_jcclx")
+}
+
+[node name="SaberTooth" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(1.3, 1.3)
+collision_layer = 2
+script = ExtResource("1_6or0b")
+
+[node name="Healthbar" parent="." instance=ExtResource("2_qj8up")]
+offset_top = -17.0
+offset_bottom = -17.0
+scale = Vector2(1.3, 1.3)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_7ffx4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("CapsuleShape2D_ki2sl")
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(1.3, 1.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 1.5)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_3k3si")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-10, 0)
+scale = Vector2(1.3, 1.3)
+target_position = Vector2(0, 15)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6l0yn")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

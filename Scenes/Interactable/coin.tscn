@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqv36g7cafj04"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/Coin.gd" id="1_bfxj4"]
+[ext_resource type="Texture2D" uid="uid://dn52e3sicx4vq" path="res://Imports/Sprites/EpisodeFour/Coin/01.png" id="2_jbk70"]
+[ext_resource type="Texture2D" uid="uid://b33m82baxl237" path="res://Imports/Sprites/EpisodeFour/Coin/02.png" id="3_sm2nq"]
+[ext_resource type="Texture2D" uid="uid://dw2yurj03x71w" path="res://Imports/Sprites/EpisodeFour/Coin/03.png" id="4_0tk8u"]
+[ext_resource type="Texture2D" uid="uid://d2bpcpdu032qt" path="res://Imports/Sprites/EpisodeFour/Coin/04.png" id="5_s82u4"]
+[ext_resource type="AudioStream" uid="uid://c0tddplwlykxd" path="res://Imports/brackeys_platformer_assets/sounds/coin.wav" id="6_h4jt8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pu1uv"]
+size = Vector2(11, 11)
+
+[sub_resource type="Animation" id="Animation_ruiy5"]
+resource_name = "Idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_jbk70"), ExtResource("3_sm2nq"), ExtResource("4_0tk8u"), ExtResource("5_s82u4")]
+}
+
+[sub_resource type="Animation" id="Animation_0hso7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_jbk70")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("coinsoundeffect:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_h4jt8")]
+}
+
+[sub_resource type="Animation" id="Animation_4rm5s"]
+resource_name = "coin sound"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("coinsoundeffect:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_h4jt8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkliy"]
+_data = {
+"Idle": SubResource("Animation_ruiy5"),
+"RESET": SubResource("Animation_0hso7"),
+"coin sound": SubResource("Animation_4rm5s")
+}
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_bfxj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jbk70")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_pu1uv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dkliy")
+}
+autoplay = "Idle"
+
+[node name="coinsoundeffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h4jt8")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,321 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqmcnp3y6ndg4"]
+
+[ext_resource type="Script" path="res://Scripts/Core/RunTimeLevel.gd" id="1_qfp1q"]
+[ext_resource type="Texture2D" uid="uid://cym5u1f0nctbl" path="res://Imports/Sprites/EpisodeFour/Spritesheet/BG Image.png" id="2_wv02r"]
+[ext_resource type="Script" path="res://Scripts/UI/UIManager.gd" id="3_vw43o"]
+[ext_resource type="Texture2D" uid="uid://dn52e3sicx4vq" path="res://Imports/Sprites/EpisodeFour/Coin/01.png" id="4_7kusu"]
+[ext_resource type="TileSet" uid="uid://cx6go5lsbyub6" path="res://Imports/Tilemaps/Tilemap.tres" id="5_2eub2"]
+[ext_resource type="PackedScene" uid="uid://c6krylhn5lg3x" path="res://Scenes/Entities/player.tscn" id="6_uclfo"]
+[ext_resource type="PackedScene" uid="uid://c0lrsxqxorx51" path="res://Scenes/Interactable/checkpoint.tscn" id="7_xgesc"]
+[ext_resource type="FontFile" uid="uid://8y0f1qfb7kyo" path="res://New folder/fonts/Kenney Pixel Square.ttf" id="11_ar78f"]
+[ext_resource type="PackedScene" uid="uid://hcr6ccmaap4r" path="res://Scenes/Entities/saber_tooth.tscn" id="13_7qjwl"]
+[ext_resource type="PackedScene" uid="uid://bt74r8m8ffe7b" path="res://Scenes/Interactable/jump_up.tscn" id="14_1l25g"]
+[ext_resource type="PackedScene" uid="uid://ck0nyhsvxa7hx" path="res://Scenes/Interactable/spikes.tscn" id="15_hcpbb"]
+[ext_resource type="PackedScene" uid="uid://cqv36g7cafj04" path="res://Scenes/Interactable/coin.tscn" id="16_swgll"]
+[ext_resource type="AudioStream" uid="uid://dcqfx4v1viyc0" path="res://ru-frequence-reflective-195071.mp3" id="17_hgvln"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0d78"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_qfp1q")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+offset_left = -544.0
+offset_top = -126.0
+offset_right = 1159.0
+offset_bottom = 776.0
+texture = ExtResource("2_wv02r")
+
+[node name="Background3" type="TextureRect" parent="."]
+show_behind_parent = true
+z_index = -2
+offset_left = -682.0
+offset_top = -392.0
+offset_right = 1021.0
+offset_bottom = 696.0
+texture = ExtResource("2_wv02r")
+
+[node name="Background4" type="TextureRect" parent="."]
+show_behind_parent = true
+z_index = -2
+offset_left = 1152.0
+offset_top = -312.0
+offset_right = 2855.0
+offset_bottom = 776.0
+texture = ExtResource("2_wv02r")
+
+[node name="Background2" type="TextureRect" parent="."]
+z_index = -2
+offset_left = 1159.0
+offset_top = -126.0
+offset_right = 2862.0
+offset_bottom = 776.0
+texture = ExtResource("2_wv02r")
+
+[node name="UIManager" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("3_vw43o")
+
+[node name="CoinIcon" type="TextureRect" parent="UIManager"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_7kusu")
+
+[node name="CoinDisplay" type="Label" parent="UIManager"]
+offset_left = 38.0
+offset_top = 7.0
+offset_right = 78.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.199219, 0.195313, 0.238281, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="PauseMenu" type="ColorRect" parent="UIManager"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 90.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.286275, 0.431373, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/PauseMenu"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 133.0
+offset_bottom = 152.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Resume"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Restart" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Restart"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WorldMap" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "World Map"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Quit" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Quit"
+
+[node name="WinScreen" type="ColorRect" parent="UIManager"]
+visible = false
+custom_minimum_size = Vector2(240, 120)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.286275, 0.431373, 1)
+
+[node name="Label" type="Label" parent="UIManager/WinScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_right = 42.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Score:1300"
+
+[node name="Restart" type="Button" parent="UIManager/WinScreen"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 85.0
+offset_right = 69.0
+offset_bottom = 116.0
+text = "Restart
+"
+
+[node name="FinnishLevel" type="Button" parent="UIManager/WinScreen"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 85.0
+offset_right = 235.0
+offset_bottom = 116.0
+text = "world map
+"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("5_2eub2")
+format = 2
+layer_0/name = "background"
+layer_0/tile_data = PackedInt32Array(917487, 589826, 1, 983023, 589826, 2, 851952, 655362, 0, 917488, 655362, 1, 983024, 655362, 2, 851953, 720898, 0, 917489, 720898, 1, 983025, 720898, 2, 917490, 786434, 1, 983026, 786434, 2, 917491, 851970, 1, 983027, 851970, 2, -65547, 589826, 1, -11, 589826, 2, -131082, 655362, 0, -65546, 655362, 1, -10, 655362, 2, -131081, 720898, 0, -65545, 720898, 1, -9, 720898, 2, -65544, 786434, 1, -8, 786434, 2, -65543, 851970, 1, -7, 851970, 2, 524290, 2, 5, 393219, 65538, 3, 458755, 65538, 4, 524291, 65538, 5, 393220, 131074, 3, 458756, 131074, 4, 524292, 131074, 5, 393221, 196610, 3, 458757, 196610, 4, 524293, 196610, 5, 393222, 262146, 3, 458758, 262146, 4, 524294, 262146, 5, 458759, 327682, 4, 524295, 327682, 5, 458760, 393218, 4, 524296, 393218, 5, 524297, 458754, 5, 524298, 524290, 5, -65522, 589826, 1, 14, 589826, 2, -131057, 655362, 0, -65521, 655362, 1, 15, 655362, 2, -131056, 720898, 0, -65520, 720898, 1, 16, 720898, 2, -65519, 786434, 1, 17, 786434, 2, -65518, 851970, 1, 18, 851970, 2, -131041, 2, 5, -262112, 65538, 3, -196576, 65538, 4, -131040, 65538, 5, -262111, 131074, 3, -196575, 131074, 4, -131039, 131074, 5, -262110, 196610, 3, -196574, 196610, 4, -131038, 196610, 5, 327714, 2, 1, 393250, 2, 2, -262109, 262146, 3, -196573, 262146, 4, -131037, 262146, 5, 262179, 65538, 0, 327715, 65538, 1, 393251, 65538, 2, -196572, 327682, 4, -131036, 327682, 5, 262180, 131074, 0, 327716, 131074, 1, 393252, 131074, 2, -196571, 393218, 4, -131035, 393218, 5, 262181, 196610, 0, 327717, 196610, 1, 393253, 196610, 2, -131034, 458754, 5, 262182, 262146, 0, 327718, 262146, 1, 393254, 262146, 2, -131033, 524290, 5, 262183, 327682, 0, 327719, 327682, 1, 393255, 327682, 2, 327720, 393218, 1, 393256, 393218, 2, 327721, 458754, 1, 393257, 458754, 2, 393258, 524290, 2, 46, 589826, 1, 65582, 589826, 2, -65489, 655362, 0, 47, 655362, 1, 65583, 655362, 2, -65488, 720898, 0, 48, 720898, 1, 65584, 720898, 2, 49, 786434, 1, 65585, 786434, 2, 50, 851970, 1, 65586, 851970, 2, 393272, 2, 5, 262201, 65538, 3, 327737, 65538, 4, 393273, 65538, 5, 262202, 131074, 3, 327738, 131074, 4, 393274, 131074, 5, 262203, 196610, 3, 327739, 196610, 4, 393275, 196610, 5, 262204, 262146, 3, 327740, 262146, 4, 393276, 262146, 5, 327741, 327682, 4, 393277, 327682, 5, 327742, 393218, 4, 393278, 393218, 5, 393279, 458754, 5, 393280, 524290, 5, 655430, 589826, 1, 720966, 589826, 2, 589895, 655362, 0, 655431, 655362, 1, 720967, 655362, 2, 589896, 720898, 0, 655432, 720898, 1, 720968, 720898, 2, 655433, 786434, 1, 720969, 786434, 2, 655434, 851970, 1, 720970, 851970, 2, -327604, 589826, 1, -262068, 589826, 2, -393139, 655362, 0, -327603, 655362, 1, -262067, 655362, 2, -393138, 720898, 0, -327602, 720898, 1, -262066, 720898, 2, -327601, 786434, 1, -262065, 786434, 2, -327600, 851970, 1, -262064, 851970, 2, 327769, 2, 5, 196698, 65538, 3, 262234, 65538, 4, 327770, 65538, 5, 196699, 131074, 3, 262235, 131074, 4, 327771, 131074, 5, 196700, 196610, 3, 262236, 196610, 4, 327772, 196610, 5, 196701, 262146, 3, 262237, 262146, 4, 327773, 262146, 5, 262238, 327682, 4, 327774, 327682, 5, 262239, 393218, 4, 327775, 393218, 5, 327776, 458754, 5, 327777, 524290, 5, -262043, 589826, 1, -196507, 589826, 2, -327578, 655362, 0, -262042, 655362, 1, -196506, 655362, 2, -327577, 720898, 0, -262041, 720898, 1, -196505, 720898, 2, -262040, 786434, 1, -196504, 786434, 2, -262039, 851970, 1, -196503, 851970, 2, -327562, 2, 5, -458633, 65538, 3, -393097, 65538, 4, -327561, 65538, 5, -458632, 131074, 3, -393096, 131074, 4, -327560, 131074, 5, -458631, 196610, 3, -393095, 196610, 4, -327559, 196610, 5, 131193, 2, 1, 196729, 2, 2, -458630, 262146, 3, -393094, 262146, 4, -327558, 262146, 5, 65658, 65538, 0, 131194, 65538, 1, 196730, 65538, 2, -393093, 327682, 4, -327557, 327682, 5, 65659, 131074, 0, 131195, 131074, 1, 196731, 131074, 2, -393092, 393218, 4, -327556, 393218, 5, 65660, 196610, 0, 131196, 196610, 1, 196732, 196610, 2, -327555, 458754, 5, 65661, 262146, 0, 131197, 262146, 1, 196733, 262146, 2, -327554, 524290, 5, 65662, 327682, 0, 131198, 327682, 1, 196734, 327682, 2, 131199, 393218, 1, 196735, 393218, 2, 131200, 458754, 1, 196736, 458754, 2, 196737, 524290, 2, -196475, 589826, 1, -130939, 589826, 2, -262010, 655362, 0, -196474, 655362, 1, -130938, 655362, 2, -262009, 720898, 0, -196473, 720898, 1, -130937, 720898, 2, -196472, 786434, 1, -130936, 786434, 2, -196471, 851970, 1, -130935, 851970, 2, 196751, 2, 5, 65680, 65538, 3, 131216, 65538, 4, 196752, 65538, 5, 65681, 131074, 3, 131217, 131074, 4, 196753, 131074, 5, 65682, 196610, 3, 131218, 196610, 4, 196754, 196610, 5, 65683, 262146, 3, 131219, 262146, 4, 196755, 262146, 5, 131220, 327682, 4, 196756, 327682, 5, 131221, 393218, 4, 196757, 393218, 5, 196758, 458754, 5, 196759, 524290, 5, 917519, 786434, 8, 983055, 786434, 9, 917520, 851970, 8, 983056, 851970, 9, 1245243, 917506, 8, 1310779, 917506, 9, 1245244, 983042, 8, 1310780, 983042, 9, 720981, 917506, 8, 786517, 917506, 9, 720982, 983042, 8, 786518, 983042, 9, 1572889, 786434, 8, 1638425, 786434, 9, 1572890, 851970, 8, 1638426, 851970, 9)
+layer_1/name = "terrain"
+layer_1/tile_data = PackedInt32Array(1048583, 0, 0, 1114119, 0, 1, 1179655, 0, 2, 1245191, 0, 3, 1310727, 0, 4, 1376263, 0, 5, 1048584, 65536, 0, 1114120, 65536, 1, 1179656, 65536, 2, 1245192, 65536, 3, 1310728, 65536, 4, 1376264, 65536, 5, 1048585, 131072, 0, 1114121, 131072, 1, 1179657, 131072, 2, 1245193, 131072, 3, 1310729, 131072, 4, 1376265, 131072, 5, 1048586, 131072, 0, 1114122, 131072, 1, 1179658, 131072, 2, 1245194, 131072, 3, 1310730, 131072, 4, 1376266, 131072, 5, 1048587, 196608, 0, 1114123, 196608, 1, 1179659, 196608, 2, 1245195, 196608, 3, 1310731, 196608, 4, 1376267, 196608, 5, 1048588, 196608, 0, 1114124, 196608, 1, 1179660, 196608, 2, 1245196, 196608, 3, 1310732, 196608, 4, 1376268, 196608, 5, 1048589, 131072, 0, 1114125, 196608, 1, 1179661, 196608, 2, 1245197, 196608, 3, 1310733, 196608, 4, 1376269, 196608, 5, 1048590, 131072, 0, 1114126, 131072, 1, 1179662, 131072, 2, 1245198, 131072, 3, 1310734, 131072, 4, 1376270, 131072, 5, 1048591, 262144, 0, 1114127, 262144, 1, 1179663, 262144, 2, 1245199, 262144, 3, 1310735, 262144, 4, 1376271, 262144, 5, 1048592, 327680, 0, 1114128, 327680, 1, 1179664, 327680, 2, 1245200, 327680, 3, 1310736, 327680, 4, 1376272, 327680, 5, 1114131, 0, 8, 1179667, 0, 9, 1114132, 65536, 8, 1179668, 65536, 9, 1114133, 131072, 8, 1179669, 131072, 9, 1114134, 196608, 8, 1179670, 196608, 9, 1114135, 262144, 8, 1179671, 262144, 9, 1114136, 327680, 8, 1179672, 327680, 9, 1572902, 524288, 8, 1638438, 524288, 9, 1572903, 589824, 8, 1638439, 589824, 9, 1376298, 524288, 0, 1441834, 524288, 1, 1507370, 524288, 2, 1572906, 524288, 3, 1638442, 524288, 4, 1703978, 524288, 5, 1376299, 589824, 0, 1441835, 589824, 1, 1507371, 589824, 2, 1572907, 589824, 3, 1638443, 589824, 4, 1703979, 589824, 5, 1507369, 458754, 11, 1376303, 0, 0, 1441839, 0, 1, 1507375, 0, 2, 1572911, 0, 3, 1638447, 0, 4, 1703983, 0, 5, 1376304, 65536, 0, 1441840, 65536, 1, 1507376, 65536, 2, 1572912, 65536, 3, 1638448, 65536, 4, 1703984, 65536, 5, 1376305, 131072, 0, 1441841, 131072, 1, 1507377, 131072, 2, 1572913, 131072, 3, 1638449, 131072, 4, 1703985, 131072, 5, 1376306, 196608, 0, 1441842, 196608, 1, 1507378, 196608, 2, 1572914, 196608, 3, 1638450, 196608, 4, 1703986, 196608, 5, 1376307, 131072, 0, 1441843, 131072, 1, 1507379, 131072, 2, 1572915, 131072, 3, 1638451, 131072, 4, 1703987, 131072, 5, 1376308, 196608, 0, 1441844, 196608, 1, 1507380, 196608, 2, 1572916, 196608, 3, 1638452, 196608, 4, 1703988, 196608, 5, 1376313, 131072, 0, 1441849, 131072, 1, 1507385, 131072, 2, 1572921, 131072, 3, 1638457, 131072, 4, 1703993, 131072, 5, 1376314, 196608, 0, 1441850, 196608, 1, 1507386, 196608, 2, 1572922, 196608, 3, 1638458, 196608, 4, 1703994, 196608, 5, 1376315, 262144, 0, 1441851, 262144, 1, 1507387, 262144, 2, 1572923, 262144, 3, 1638459, 262144, 4, 1703995, 262144, 5, 1376316, 327680, 0, 1441852, 327680, 1, 1507388, 327680, 2, 1572924, 327680, 3, 1638460, 327680, 4, 1703996, 327680, 5, 1376309, 131072, 0, 1441845, 131072, 1, 1507381, 131072, 2, 1572917, 131072, 3, 1638453, 131072, 4, 1703989, 131072, 5, 1376310, 196608, 0, 1441846, 196608, 1, 1507382, 196608, 2, 1572918, 196608, 3, 1638454, 196608, 4, 1703990, 196608, 5, 1376311, 131072, 0, 1441847, 131072, 1, 1507383, 131072, 2, 1572919, 131072, 3, 1638455, 131072, 4, 1703991, 131072, 5, 1376312, 131072, 0, 1441848, 131072, 1, 1507384, 131072, 2, 1572920, 131072, 3, 1638456, 131072, 4, 1703992, 131072, 5, 1376319, 0, 8, 1441855, 0, 9, 1376320, 65536, 8, 1441856, 65536, 9, 1376321, 131072, 8, 1441857, 131072, 9, 1376322, 196608, 8, 1441858, 196608, 9, 1376323, 262144, 8, 1441859, 262144, 9, 1376324, 327680, 8, 1441860, 327680, 9, 917579, 524288, 0, 983115, 524288, 1, 1048651, 524288, 2, 1114187, 524288, 3, 1179723, 524288, 4, 1245259, 524288, 5, 917580, 589824, 0, 983116, 589824, 1, 1048652, 589824, 2, 1114188, 589824, 3, 1179724, 589824, 4, 1245260, 589824, 5, 1114183, 524288, 0, 1179719, 524288, 1, 1245255, 524288, 2, 1310791, 524288, 3, 1376327, 524288, 4, 1441863, 524288, 5, 1114184, 589824, 0, 1179720, 589824, 1, 1245256, 589824, 2, 1310792, 589824, 3, 1376328, 589824, 4, 1441864, 589824, 5, 852049, 0, 8, 917585, 0, 9, 852050, 65536, 8, 917586, 65536, 9, 852051, 131072, 8, 917587, 131072, 9, 852052, 196608, 8, 917588, 196608, 9, 852053, 262144, 8, 917589, 262144, 9, 852054, 327680, 8, 917590, 327680, 9, 1703963, 131072, 8, 1769499, 131072, 9, 1703964, 196608, 8, 1769500, 196608, 9, 1703965, 262144, 8, 1769501, 262144, 9, 1703966, 65536, 8, 1769502, 65536, 9, 1703967, 131072, 8, 1769503, 131072, 9, 1703968, 196608, 8, 1769504, 196608, 9, 1703969, 262144, 8, 1769505, 262144, 9, 1703970, 327680, 8, 1769506, 327680, 9, 1703961, 0, 8, 1769497, 0, 9, 1703962, 65536, 8, 1769498, 65536, 9, 1114139, 0, 8, 1179675, 0, 9, 1114140, 65536, 8, 1179676, 65536, 9, 1114141, 131072, 8, 1179677, 131072, 9, 1114142, 196608, 8, 1179678, 196608, 9, 1114143, 262144, 8, 1179679, 262144, 9, 1114144, 327680, 8, 1179680, 327680, 9)
+
+[node name="Player" parent="." instance=ExtResource("6_uclfo")]
+position = Vector2(144, 234)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_xgesc")]
+show_behind_parent = true
+z_index = -1
+position = Vector2(139.75, 211)
+spawnpoint = true
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("7_xgesc")]
+z_index = -1
+position = Vector2(451, 370)
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("7_xgesc")]
+z_index = -1
+position = Vector2(1360, 162)
+win_condition = true
+
+[node name="Spikes2" parent="." instance=ExtResource("15_hcpbb")]
+show_behind_parent = true
+z_index = -1
+position = Vector2(793, 321)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_hgvln")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 61.0
+offset_top = 202.0
+offset_right = 285.0
+offset_bottom = 225.0
+scale = Vector2(0.6, 0.6)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = " A and D to move left or right"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 266.0
+offset_top = 197.0
+offset_right = 490.0
+offset_bottom = 220.0
+scale = Vector2(0.6, 0.6)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "SPACE to jump"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 548.0
+offset_top = 336.0
+offset_right = 728.0
+offset_bottom = 385.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "Checkpoints save your 
+respawn point."
+
+[node name="Label8" type="Label" parent="."]
+offset_left = 664.0
+offset_top = 248.0
+offset_right = 1120.0
+offset_bottom = 299.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "Most traps do 2 damage out of your total health 4 
+
+some traps  do 1 damage."
+
+[node name="Label9" type="Label" parent="."]
+offset_left = 904.0
+offset_top = 272.0
+offset_right = 1360.0
+offset_bottom = 323.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "Collect as many coins as you 
+can to get the highest score"
+
+[node name="Label10" type="Label" parent="."]
+offset_left = 1040.0
+offset_top = 240.0
+offset_right = 1496.0
+offset_bottom = 291.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "jump up can push you up."
+
+[node name="Label11" type="Label" parent="."]
+offset_left = 1223.0
+offset_top = 158.0
+offset_right = 1679.0
+offset_bottom = 209.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "get to the last checkpoint 
+to reach the nexxt level"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 335.0
+offset_top = 337.0
+offset_right = 583.0
+offset_bottom = 388.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_ar78f")
+text = "There can be invisible 
+platforms like this one."
+label_settings = SubResource("LabelSettings_b0d78")
+
+[node name="JumpPad" parent="." instance=ExtResource("14_1l25g")]
+position = Vector2(1086, 322)
+
+[node name="JumpPad2" parent="." instance=ExtResource("14_1l25g")]
+position = Vector2(1152, 256)
+
+[node name="JumpPad3" parent="." instance=ExtResource("14_1l25g")]
+position = Vector2(1216, 208)
+
+[node name="Coin" parent="." instance=ExtResource("16_swgll")]
+position = Vector2(896, 320)
+
+[node name="Coin2" parent="." instance=ExtResource("16_swgll")]
+position = Vector2(911, 320)
+
+[node name="Coin3" parent="." instance=ExtResource("16_swgll")]
+position = Vector2(904, 305)
+
+[node name="SaberTooth_hp" parent="." instance=ExtResource("13_7qjwl")]
+position = Vector2(1024, 322)
+
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer/Resume" to="UIManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer2/Restart" to="UIManager" method="_on_restart_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer3/WorldMap" to="UIManager" method="_on_world_map_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer4/Quit" to="UIManager" method="_on_quit_pressed"]
+[connection signal="pressed" from="UIManager/WinScreen/Restart" to="UIManager" method="_on_restart_pressed"]
+[connection signal="pressed" from="UIManager/WinScreen/FinnishLevel" to="UIManager" method="_on_finnish_level_pressed"]

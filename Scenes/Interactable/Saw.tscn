@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cu5mx70bayf8w"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/Spikes.gd" id="1_5057c"]
+[ext_resource type="Texture2D" uid="uid://t7snb2rbnmvf" path="res://Imports/Free/Traps/Saw/On (38x38).png" id="2_gngrr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bsjb"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbdvu"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf6g1"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf8f6"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xfe4"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4yms"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhdfk"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xv7v"]
+atlas = ExtResource("2_gngrr")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wt8s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bsjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbdvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf6g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf8f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xfe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4yms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhdfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xv7v")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 10.0
+}]
+
+[node name="Saw" type="Node2D"]
+script = ExtResource("1_5057c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1wt8s")
+animation = &"moving"
+autoplay = "moving"
+frame_progress = 0.31784
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(1.07626, -11.4866)
+scale = Vector2(0.97253, 1.40332)
+polygon = PackedVector2Array(5.06281, -5.35404, 4.03457, -5.35404, -1.10666, -5.35404, -4.1914, -3.92885, -7.27614, -1.07847, -9.33263, -1.07847, -10.3609, -3.92885, -12.4174, -3.92885, -15.5021, -1.79107, -19.6151, 3.9097, -20.6433, 8.89787, -17.5586, 11.0357, -13.4456, 13.1734, -19.6151, 14.5986, -15.5021, 18.8742, -8.30438, 16.7364, -5.21965, 18.1616, -7.27614, 21.012, -2.13491, 21.7246, 3.00632, 19.5868, 4.03457, 17.449, 7.1193, 16.7364, 8.14755, 19.5868, 8.14755, 21.012, 13.2888, 18.1616, 13.2888, 15.3112, 11.2323, 13.1734, 13.2888, 11.0357, 17.4018, 12.4608, 18.43, 10.3231, 17.4018, 6.76008, 11.2323, 3.1971, 16.3735, 1.77191, 16.3735, -0.365874, 12.2605, -1.79107, 8.14755, -1.79107, 6.09106, -0.365874, 3.00632, -2.50366, 5.06281, -3.92885, 4.03457, -5.35404)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
